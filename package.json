@@ -17,13 +17,8 @@
 		"url": "https://github.com/Songkeys/aimmit.git"
 	},
 	"license": "MIT",
-	"exports": {
-		"require": "./dist/index.js",
-		"import": "./dist/index.mjs"
-	},
 	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
+	"module": "./dist/index.js",
 	"bin": "./dist/index.js",
 	"files": [
 		"dist"

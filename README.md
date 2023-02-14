@@ -1,5 +1,3 @@
-<div id="top"></div>
-
 <!-- PROJECT SHIELDS -->
 
 [![NPM Version][npm-version]][npm-url]
@@ -26,68 +24,72 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/Songkeys/aimmit">
-    <img src="images/logo.svg" alt="Logo" width="80" height="80">
-  </a>
 
-  <h2 align="center">Node.js-Library-Template</h2>
+  <h2 align="center">aimmit</h2>
 
   <p align="center">
-    A Node.js TypeScript library starter template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/Songkeys/aimmit"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/Songkeys/aimmit">View Demo</a>
-    ·
-    <a href="https://github.com/Songkeys/aimmit/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/Songkeys/aimmit/issues">Request Feature</a>
+    Git commit message generator with AI
   </p>
 </div>
 
 ## About The Project
 
-A Node.js TypeScript library starter template to jumpstart your projects!
+Generate the commit message with AI (ChatGPT).
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+## Installation
 
-## Getting Started
+Option 1: directly use with npx:
 
-1. Use this template to create your own library.
-2. Replace all `aimmit` in the code with your project's name.
-3. Replace all `Songkeys` in the code with your GitHub username.
+```bash
+npx aimmit@latest
+```
 
-Features and acknowledgements:
+Option 2: install globally:
 
-1. Pure TypeScript.
-2. Bundling with [`tsup`](https://github.com/egoist/tsup).
-3. Testing with [`vitest`](https://vitest.dev/)
-4. Releasing with GitHub Action [`npm-publish`](https://github.com/JS-DevTools/npm-publish).
-5. Automatically creating GitHub tags, releases and changelogs with [`changelogithub`](https://github.com/antfu/changelogithub).
+```bash
+npm install -g aimmit
+```
 
-> To use GitHub Actions to publish and release library, you need `GH_TOKEN` and `NPM_TOKEN` environment variables configured in your repository.
+## Options
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+Usage:
 
-## Usage
+```bash
+Options:
+      --help                  Show help                        [boolean]
+      --version               Show version number              [boolean]
+  -c, --conventional-commits  Use Conventional Commits
+                                              [boolean] [default: false]
+  -l, --lite                  Only print the commit message
+                                              [boolean] [default: false]
+  -a, --auto-add-all          Automatically add all files to the commit
+                                              [boolean] [default: false]
+  -p, --auto-push             Automatically push the commit to the
+                              remote          [boolean] [default: false]
+  -r, --reverse-proxy-url     Reverse proxy URL                 [string]
+  -v, --verbose               Run with verbose logging
+                                              [boolean] [default: false]
+```
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+## Examples
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+Generate with Conventional Commits:
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+```bash
+aimmit -c
+```
 
-## Roadmap
+Automatically add all files to the commit, then generate with Conventional Commits, then automatically push the commit to the remote:
 
-- [ ] Add Changelog
-- [ ] Multi-language Support
-  - [ ] Chinese
-  - [ ] Spanish
+```bash
+aimmit -a -c -p
+```
 
-See the [open issues](https://github.com/Songkeys/aimmit/issues) for a full list of proposed features (and known issues).
+Only print the commit message:
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+```bash
+aimmit -l
+```
 
 ## Contributing
 
@@ -102,10 +104,11 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+## Credits
+
+- [Nutlope/aicommits](https://github.com/Nutlope/aicommits): the original project. I made this project because I want to make more customizations and provide some free services.
+- OpenAI: the AI model provider.
 
 ## License
 
 Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>

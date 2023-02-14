@@ -10,11 +10,11 @@ export const getChatGptResponse = async (diff: string) => {
 
 	const prompt = `I want you to act like a git commit message writer.
 I will input a git diff and your job is to convert it into a useful commit message.
-Return nothing else but only the commit message without quotes.
-Return a short, concise, present-tense, lowercased complete sentence, with fewer than 50 characters the better.
+Return nothing else but only ONE commit message without quotes.
+Return a short, concise, present-tense, complete sentence, with fewer than 50 characters the better.
 ${
 	conventionalCommits
-		? 'The commit message should follow the conventional commits. E.g. feat: allow provided config object to extend other configs; fix: prevent racing of requests'
+		? "The commit message should follow the conventional commits. I.e. 'feat: add a new feature' or 'fix: fix a bug'"
 		: ''
 }
 The diffs are below:
@@ -110,11 +110,13 @@ const generateMessage = async (diff: string): Promise<string> => {
 	if (!response.ok) {
 		consola.error(
 			'Error while communicating with the AI. Please report this issue on https://github.com/Songkeys/aimmit/issues',
+			{ response: await response.text() },
 		)
 		process.exit(1)
 	}
 
 	const json: any = await response.json()
+
 	const aiCommit = json.choices[0].text
 
 	return aiCommit.replace(/(\r\n|\n|\r)/gm, '')
