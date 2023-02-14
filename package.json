@@ -19,12 +19,12 @@
 	"license": "MIT",
 	"main": "./dist/index.js",
 	"module": "./dist/index.js",
-	"bin": "./dist/index.js",
+	"bin": "./bin.js",
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"build": "npm run build:fast -- --dts-resolve",
+		"build": "npm run build:fast",
 		"build:dev": "npm run build:fast -- --watch",
 		"build:fast": "tsup",
 		"prepublishOnly": "npm run build",
