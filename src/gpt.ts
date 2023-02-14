@@ -12,11 +12,11 @@ export const getChatGptResponse = async (diff: string) => {
 	const prompt = `I want you to act like a git commit message writer.
 I will input a git diff and your job is to convert it into a useful commit message.
 Return nothing else but only ONE commit message without quotes or backticks.
-Return a short, concise, present-tense, complete sentence.
-The length of message should be fewer than 50 characters if possible.
+Return a concise, precise, present-tense, complete sentence.
+The length should be fewer than 50 characters if possible.
 ${
 	conventionalCommits
-		? 'The commit message should follow the conventional commits. The format is <type>[optional scope]: <description>. A type can be one of the following: build, chore, ci, docs, feat, fix, perf, refactor, revert, style, or test.'
+		? 'It should follow the conventional commits. The format is <type>: <description>. A type can be one of the following: build, chore, ci, docs, feat, fix, perf, refactor, revert, style, or test. Use it to precisely describe the change.'
 		: ''
 }
 ${
