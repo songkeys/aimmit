@@ -27,7 +27,7 @@ export const getDiff = () => {
 
 	if (!diff) {
 		consola.error(
-			'No staged changes found. Make sure there are changes and run `git add .`',
+			'No staged changes found. Make sure there are changes and run `git add .` or use the `--auto-add-all`, `-a` option.',
 		)
 		process.exit(1)
 	}

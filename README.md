@@ -27,6 +27,8 @@
 
   <h2 align="center">aimmit</h2>
 
+  <img src="images/logo.svg" alt="Logo" width="80" height="80">
+
   <p align="center">
     Git commit message generator with AI
   </p>
