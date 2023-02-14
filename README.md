@@ -45,7 +45,7 @@ Generate the commit message with AI (ChatGPT).
 Option 1: directly use with npx:
 
 ```bash
-npx aimmit@latest
+npx aimmit
 ```
 
 Option 2: install globally then use:
