@@ -40,6 +40,18 @@ Generate the commit message with AI (ChatGPT).
 
 > This library uses itself to generate the commit message.
 
+Idea from the original project: [Nutlope/aicommits](https://github.com/Nutlope/aicommits). I made this another project because I want to add more features:
+
+- [x] Use Conventional Commits
+- [x] Automatically add all files to the commit
+- [x] Automatically push the commit to the remote
+- [x] Only print the commit message (for CI/CD)
+- [x] ✨ Support emoji
+- [x] **Free service as an option**: use a reverse proxy for free
+- [ ] Allow editing the commit message
+- [ ] Allow customizing the commit message template
+- [ ] ... (feature requests are welcome in the [issues](https://github.com/Songkeys/aimmit/issues))
+
 ## Installation
 
 Option 1: directly use with npx:
@@ -86,7 +98,7 @@ Note that this is a paid service by OpenAI.
 
 Instead of using the official OpenAI paid service, there are some free reverse proxy services available but may have some limitations and of less stability.
 
-Here is one example:
+You can use the `-r` option to specify the reverse proxy URL:
 
 ```bash
 aimmit -r https://proxy/api
@@ -104,13 +116,13 @@ A free reverse proxy service is provided by default in this project by me. I pro
 
 ## Options
 
-Usage:
-
 ```bash
 Options:
       --help                  Show help                                [boolean]
       --version               Show version number                      [boolean]
   -c, --conventional-commits  Use Conventional Commits[boolean] [default: false]
+  -e, --emoji                 Use emoji in commit message
+                                                      [boolean] [default: false]
   -l, --lite                  Only print the commit message
                                                       [boolean] [default: false]
   -a, --auto-add-all          Automatically add all files to the commit
@@ -154,11 +166,6 @@ Don't forget to give the project a star! Thanks again!
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-## Credits
-
-- [Nutlope/aicommits](https://github.com/Nutlope/aicommits): the original project. I made this project because I want to make more customizations and provide a free service option.
-- OpenAI: the AI model provider.
 
 ## License
 

@@ -8,6 +8,12 @@ const argv = yargs(hideBin(process.argv))
 		description: 'Use Conventional Commits',
 		default: false,
 	})
+	.option('emoji', {
+		alias: 'e',
+		type: 'boolean',
+		description: 'Use emoji in commit message',
+		default: false,
+	})
 	.option('lite', {
 		alias: 'l',
 		type: 'boolean',
@@ -48,6 +54,7 @@ const argv = yargs(hideBin(process.argv))
 
 interface Options {
 	conventionalCommits: boolean
+	emoji: boolean
 	lite: boolean
 	autoAddAll: boolean
 	autoPush: boolean

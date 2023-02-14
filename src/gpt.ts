@@ -7,16 +7,21 @@ import { getOptions } from './options'
 import boxen from 'boxen'
 
 export const getChatGptResponse = async (diff: string) => {
-	const { conventionalCommits, lite } = getOptions()
+	const { conventionalCommits, emoji, lite } = getOptions()
 
 	const prompt = `I want you to act like a git commit message writer.
 I will input a git diff and your job is to convert it into a useful commit message.
-Return nothing else but only ONE commit message without quotes.
+Return nothing else but only ONE commit message without quotes or backticks.
 Return a short, concise, present-tense, complete sentence.
 The length of message should be fewer than 50 characters if possible.
 ${
 	conventionalCommits
-		? "The commit message should follow the conventional commits. I.e. 'feat: add a new feature', 'fix: fix a bug', 'doc: change readme'"
+		? 'The commit message should follow the conventional commits. The format is <type>[optional scope]: <description>. A type can be one of the following: build, chore, ci, docs, feat, fix, perf, refactor, revert, style, or test.'
+		: ''
+}
+${
+	emoji
+		? 'The commit message should include an emoji. The emoji should be the first character of the message.'
 		: ''
 }
 The diffs are below:
