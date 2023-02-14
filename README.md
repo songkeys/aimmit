@@ -56,13 +56,13 @@ aimmit
 
 ### Set up the AIMMIT_API_KEY [Payment Required]
 
-Before using `aimmit`, you need to set up the `AIMMIT_API_KEY` environment variable.
+Before using `aimmit`, you need to set up the `AIMMIT_API_KEY` (i.e. OpenAI API key) environment variable.
 
 ```
 AIMMIT_API_KEY=... aimmit
 ```
 
-Or you can set it in the `.bashrc` file:
+Or you can set it in the `.bashrc` or `.zshrc` file:
 
 ```bash
 export AIMMIT_API_KEY=...
@@ -85,7 +85,7 @@ Instead of using the official OpenAI paid service, there are some free reverse p
 Here is one example:
 
 ```bash
-aimmit -r https://gpt.song.work/aimmit
+aimmit -r https://proxy/api
 ```
 
 Or you can use the environment variable `AIMMIT_REVERSE_PROXY_URL`:
@@ -93,6 +93,10 @@ Or you can use the environment variable `AIMMIT_REVERSE_PROXY_URL`:
 ```bash
 export AIMMIT_REVERSE_PROXY_URL=...
 ```
+
+Please note that a reverse proxy service may have security issues. You should use it at your own risk.
+
+A free reverse proxy service is provided by default in this project by me. I promise that it will NOT collect any of your data. However, it may go down at any time.
 
 ## Options
 
@@ -114,7 +118,7 @@ Options:
   -v, --verbose               Run with verbose logging[boolean] [default: false]
 ```
 
-## Examples
+### Examples
 
 Generate with Conventional Commits:
 
@@ -149,7 +153,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## Credits
 
-- [Nutlope/aicommits](https://github.com/Nutlope/aicommits): the original project. I made this project because I want to make more customizations and provide some free services.
+- [Nutlope/aicommits](https://github.com/Nutlope/aicommits): the original project. I made this project because I want to make more customizations and provide a free service option.
 - OpenAI: the AI model provider.
 
 ## License

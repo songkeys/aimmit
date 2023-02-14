@@ -4,6 +4,7 @@ import consola from 'consola'
 // @ts-ignore
 import inquirer from 'inquirer'
 import { getOptions } from './options'
+import boxen from 'boxen'
 
 export const getChatGptResponse = async (diff: string) => {
 	const { conventionalCommits, lite } = getOptions()
@@ -39,8 +40,9 @@ ${diff}
 			break
 		}
 
-		console.log('\n')
-		consola.success(`AI commit message: \n\n${message}\n`)
+		consola.success(
+			boxen(message, { padding: 1, margin: 1, title: 'AI Commit Message' }),
+		)
 
 		const confirmationMessage = await inquirer.prompt([
 			{
@@ -88,13 +90,13 @@ const generateMessage = async (diff: string): Promise<string> => {
 		n: 1,
 	}
 
-	const { reverseProxyUrl, key } = getOptions()
-	const url = reverseProxyUrl ?? 'https://api.openai.com/v1/completions'
-	if (!reverseProxyUrl && !key) {
-		consola.error(
-			'No OpenAI API key found. Please set the OPENAI_API_KEY environment variable.',
+	const { reverseProxyUrl, key, lite } = getOptions()
+	let url = reverseProxyUrl ?? 'https://api.openai.com/v1/completions'
+	if (!reverseProxyUrl && !key && !lite) {
+		consola.warn(
+			'No API key found. Please set the AIMMIT_API_KEY environment variable. A fallback to the free reverse proxy will be used.',
 		)
-		process.exit(1)
+		url = 'https://gpt.song.work/aimmit'
 	}
 
 	const response = await fetch(url, {
