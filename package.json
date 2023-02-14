@@ -1,18 +1,20 @@
 {
-	"name": "node-lib-template",
+	"name": "aimmit",
 	"version": "1.0.0",
-	"description": "A Node.js Library starter template",
+	"description": "Commit messages made easy with AI (ChatGPT)",
 	"keywords": [
-		"node",
-		"library",
-		"template"
+		"commit",
+		"message",
+		"ai",
+		"chatgpt"
 	],
+	"type": "module",
 	"bugs": {
-		"url": "https://github.com/Songkeys/node-lib-template/issues"
+		"url": "https://github.com/Songkeys/aimmit/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Songkeys/node-lib-template.git"
+		"url": "https://github.com/Songkeys/aimmit.git"
 	},
 	"license": "MIT",
 	"exports": {
@@ -22,6 +24,7 @@
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
+	"bin": "./dist/index.js",
 	"files": [
 		"dist"
 	],
@@ -32,7 +35,14 @@
 		"prepublishOnly": "npm run build",
 		"test": "vitest run"
 	},
+	"dependencies": {
+		"@waylaidwanderer/chatgpt-api": "^1.16.0",
+		"consola": "^2.15.3",
+		"inquirer": "^9.1.4",
+		"yargs": "^17.6.2"
+	},
 	"devDependencies": {
+		"@types/yargs": "^17.0.22",
 		"prettier": "^2.8.4",
 		"tsup": "^6.6.2",
 		"typescript": "^4.9.5",

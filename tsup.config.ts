@@ -5,7 +5,7 @@ export default defineConfig((options) => ({
 		index: './src/index.ts',
 	},
 	outDir: 'dist',
-	format: ['cjs', 'esm', 'iife'],
+	format: ['esm'],
 	clean: true,
 	sourcemap: true,
 	minify: !options.watch,
