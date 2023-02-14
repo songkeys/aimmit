@@ -8,18 +8,21 @@ import { getOptions } from './options'
 export const getChatGptResponse = async (diff: string) => {
 	const { conventionalCommits, lite } = getOptions()
 
-	let prompt = `I want you to act like a git commit message writer.
+	const prompt = `I want you to act like a git commit message writer.
 I will input a git diff and your job is to convert it into a useful commit message.
 Return nothing else but only the commit message without quotes.
-Return a short, concise, present-tense complete sentence, with fewer than 50 characters the better.
+Return a short, concise, present-tense, lowercased complete sentence, with fewer than 50 characters the better.
 ${
 	conventionalCommits
 		? 'The commit message should follow the conventional commits. E.g. feat: allow provided config object to extend other configs; fix: prevent racing of requests'
 		: ''
 }
-The diffs are below: \n\n`
+The diffs are below:
 
-	prompt += diff
+\`\`\`diff
+${diff}
+\`\`\
+`
 
 	if (!lite) {
 		consola.info('Generating commit message with AI...')
@@ -27,22 +30,14 @@ The diffs are below: \n\n`
 
 	let breakLoop = false
 
-	let res: Awaited<ReturnType<typeof generateMessage>> | undefined
 	let message: string = ''
 	while (!breakLoop) {
-		res = await generateMessage(
-			res?.conversationId ? 'Regenerate one' : prompt,
-			{
-				conversationId: res?.conversationId,
-				messageId: res?.messageId,
-			},
-		)
+		message = await generateMessage(prompt)
 
 		if (lite) {
 			break
 		}
 
-		message = res.response.trim()
 		console.log('\n')
 		consola.success(`AI commit message: \n\n${message}\n`)
 
@@ -62,6 +57,7 @@ The diffs are below: \n\n`
 				break
 			case 'R':
 			case 'r':
+				consola.info('Generating commit message with AI...')
 				break
 			case 'N':
 			case 'n':
@@ -78,41 +74,48 @@ The diffs are below: \n\n`
 	return message
 }
 
-const generateMessage = async (
-	diff: string,
-	{
-		conversationId,
-		messageId,
-	}: {
-		conversationId?: string
-		messageId?: string
-	} = {},
-): Promise<{
-	response: string
-	conversationId: string
-	messageId: string
-}> => {
-	const cookie = ``
-
-	const clientOptions = {
-		reverseProxyUrl: 'https://chatgpt.hato.ai/completions',
-		modelOptions: {
-			model: 'text-davinci-002-render',
-		},
-		parentMessageId: messageId,
-		conversationId,
-		// debug: true,
+const generateMessage = async (diff: string): Promise<string> => {
+	const payload = {
+		model: 'text-davinci-003',
+		prompt: diff,
+		temperature: 0.7,
+		top_p: 1,
+		frequency_penalty: 0,
+		presence_penalty: 0,
+		max_tokens: 200,
+		stream: false,
+		n: 1,
 	}
 
-	const chatGptClient = new ChatGPTClient(cookie, clientOptions)
+	const key = process.env.OPENAI_API_KEY
 
-	const res = await chatGptClient.sendMessage(diff)
-	if (!res.response) {
+	const { reverseProxyUrl } = getOptions()
+	const url = reverseProxyUrl ?? 'https://api.openai.com/v1/completions'
+	if (!reverseProxyUrl && !key) {
+		consola.error(
+			'No OpenAI API key found. Please set the OPENAI_API_KEY environment variable.',
+		)
+		process.exit(1)
+	}
+
+	const response = await fetch(url, {
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${key ?? ''}`,
+		},
+		method: 'POST',
+		body: JSON.stringify(payload),
+	})
+
+	if (!response.ok) {
 		consola.error(
 			'Error while communicating with the AI. Please report this issue on https://github.com/Songkeys/aimmit/issues',
 		)
 		process.exit(1)
 	}
 
-	return res
+	const json: any = await response.json()
+	const aiCommit = json.choices[0].text
+
+	return aiCommit.replace(/(\r\n|\n|\r)/gm, '')
 }

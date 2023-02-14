@@ -26,6 +26,11 @@ const argv = yargs(hideBin(process.argv))
 		description: 'Automatically push the commit to the remote',
 		default: false,
 	})
+	.option('reverse-proxy-url', {
+		alias: 'r',
+		type: 'string',
+		description: 'Reverse proxy URL',
+	})
 	.option('verbose', {
 		alias: 'v',
 		type: 'boolean',
@@ -39,6 +44,7 @@ interface Options {
 	lite: boolean
 	autoAddAll: boolean
 	autoPush: boolean
+	reverseProxyUrl: string
 	verbose: boolean
 }
 

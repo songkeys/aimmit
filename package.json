@@ -36,7 +36,7 @@
 		"test": "vitest run"
 	},
 	"dependencies": {
-		"@waylaidwanderer/chatgpt-api": "^1.16.0",
+		"@waylaidwanderer/chatgpt-api": "^1.16.1",
 		"consola": "^2.15.3",
 		"inquirer": "^9.1.4",
 		"yargs": "^17.6.2"

@@ -9,6 +9,6 @@ const main = async () => {
 	push()
 }
 
-main().catch(() => {
-	console.error('Error')
+main().catch((e) => {
+	console.error(e)
 })
