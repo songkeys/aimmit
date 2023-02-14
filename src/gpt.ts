@@ -21,7 +21,7 @@ ${
 }
 ${
 	emoji
-		? 'The commit message should include an emoji. The emoji should be the first character of the message.'
+		? 'The commit message should include an emoji (NOT a shortcode like :tada:). The emoji should be the first character of the message.'
 		: ''
 }
 The diffs are below:

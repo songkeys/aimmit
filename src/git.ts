@@ -48,10 +48,16 @@ export const commit = (message: string) => {
 		stdio: lite ? 'ignore' : 'inherit',
 		encoding: 'utf8',
 	})
+	if (!lite) {
+		consola.success('Committed successfully')
+	}
 }
 
 export const push = () => {
 	const { autoPush, lite } = getOptions()
 	if (!autoPush) return
 	execSync('git push', { stdio: lite ? 'ignore' : 'inherit', encoding: 'utf8' })
+	if (!lite) {
+		consola.success('Pushed successfully')
+	}
 }
