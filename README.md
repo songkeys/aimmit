@@ -27,16 +27,18 @@
 
   <h2 align="center">aimmit</h2>
 
-  <img src="images/logo.svg" alt="Logo" width="80" height="80">
-
   <p align="center">
     Git commit message generator with AI
   </p>
+  
+  <img src="images/demo.gif" alt="Demo">
 </div>
 
 ## About The Project
 
 Generate the commit message with AI (ChatGPT).
+
+> This library uses itself to generate the commit message.
 
 ## Installation
 
