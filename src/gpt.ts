@@ -11,10 +11,11 @@ export const getChatGptResponse = async (diff: string) => {
 	const prompt = `I want you to act like a git commit message writer.
 I will input a git diff and your job is to convert it into a useful commit message.
 Return nothing else but only ONE commit message without quotes.
-Return a short, concise, present-tense, complete sentence, with fewer than 50 characters the better.
+Return a short, concise, present-tense, complete sentence.
+The length of message should be fewer than 50 characters if possible.
 ${
 	conventionalCommits
-		? "The commit message should follow the conventional commits. I.e. 'feat: add a new feature' or 'fix: fix a bug'"
+		? "The commit message should follow the conventional commits. I.e. 'feat: add a new feature', 'fix: fix a bug', 'doc: change readme'"
 		: ''
 }
 The diffs are below:
@@ -87,9 +88,7 @@ const generateMessage = async (diff: string): Promise<string> => {
 		n: 1,
 	}
 
-	const key = process.env.OPENAI_API_KEY
-
-	const { reverseProxyUrl } = getOptions()
+	const { reverseProxyUrl, key } = getOptions()
 	const url = reverseProxyUrl ?? 'https://api.openai.com/v1/completions'
 	if (!reverseProxyUrl && !key) {
 		consola.error(

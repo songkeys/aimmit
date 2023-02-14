@@ -44,10 +44,54 @@ Option 1: directly use with npx:
 npx aimmit@latest
 ```
 
-Option 2: install globally:
+Option 2: install globally then use:
 
 ```bash
+# install
 npm install -g aimmit
+
+# use
+aimmit
+```
+
+### Set up the AIMMIT_API_KEY [Payment Required]
+
+Before using `aimmit`, you need to set up the `AIMMIT_API_KEY` environment variable.
+
+```
+AIMMIT_API_KEY=... aimmit
+```
+
+Or you can set it in the `.bashrc` file:
+
+```bash
+export AIMMIT_API_KEY=...
+```
+
+Or you can specify the API key with the `-k` option:
+
+```bash
+aimmit -k ...
+```
+
+You can get the API key from [OpenAI](https://openai.com/).
+
+Note that this is a paid service by OpenAI.
+
+### Alternative: Use a Reverse Proxy [Free Depending on the Provider]
+
+Instead of using the official OpenAI paid service, there are some free reverse proxy services available but may have some limitations and of less stability.
+
+Here is one example:
+
+```bash
+aimmit -r https://gpt.song.work/aimmit
+```
+
+Or you can use the environment variable `AIMMIT_REVERSE_PROXY_URL`:
+
+```bash
+export AIMMIT_REVERSE_PROXY_URL=...
 ```
 
 ## Options
@@ -56,19 +100,18 @@ Usage:
 
 ```bash
 Options:
-      --help                  Show help                        [boolean]
-      --version               Show version number              [boolean]
-  -c, --conventional-commits  Use Conventional Commits
-                                              [boolean] [default: false]
+      --help                  Show help                                [boolean]
+      --version               Show version number                      [boolean]
+  -c, --conventional-commits  Use Conventional Commits[boolean] [default: false]
   -l, --lite                  Only print the commit message
-                                              [boolean] [default: false]
+                                                      [boolean] [default: false]
   -a, --auto-add-all          Automatically add all files to the commit
-                                              [boolean] [default: false]
-  -p, --auto-push             Automatically push the commit to the
-                              remote          [boolean] [default: false]
-  -r, --reverse-proxy-url     Reverse proxy URL                 [string]
-  -v, --verbose               Run with verbose logging
-                                              [boolean] [default: false]
+                                                      [boolean] [default: false]
+  -p, --auto-push             Automatically push the commit to the remote
+                                                      [boolean] [default: false]
+  -r, --reverse-proxy-url     Reverse proxy URL                         [string]
+  -k, --key                   API key                                   [string]
+  -v, --verbose               Run with verbose logging[boolean] [default: false]
 ```
 
 ## Examples

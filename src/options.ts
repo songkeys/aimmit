@@ -30,6 +30,13 @@ const argv = yargs(hideBin(process.argv))
 		alias: 'r',
 		type: 'string',
 		description: 'Reverse proxy URL',
+		default: process.env.AIMMIT_REVERSE_PROXY_URL,
+	})
+	.option('key', {
+		alias: 'k',
+		type: 'string',
+		description: 'API key',
+		default: process.env.AIMMIT_API_KEY,
 	})
 	.option('verbose', {
 		alias: 'v',
@@ -45,6 +52,7 @@ interface Options {
 	autoAddAll: boolean
 	autoPush: boolean
 	reverseProxyUrl: string
+	key: string
 	verbose: boolean
 }
 
