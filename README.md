@@ -40,7 +40,7 @@ Generate the commit message with AI (ChatGPT).
 
 > This library uses itself to generate the commit message.
 
-Idea from the original project: [Nutlope/aicommits](https://github.com/Nutlope/aicommits). I made this another project because I want to add more features:
+Idea from the original project [Nutlope/aicommits](https://github.com/Nutlope/aicommits). I made this `aimmit` project because I want to add more features:
 
 - [x] Use Conventional Commits
 - [x] Automatically add all files to the commit
