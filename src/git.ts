@@ -43,6 +43,13 @@ export const getDiff = () => {
 }
 
 export const commit = (message: string) => {
+	// if message contain weird chars like `
+	// it will cause error
+	// so we need to escape it
+	message = message.replace(/`/g, '\\`')
+	message = message.replace(/"/g, '\\"')
+
+	
 	const { lite } = getOptions()
 	execSync(`git commit -m "${message}"`, {
 		stdio: lite ? 'ignore' : 'inherit',
