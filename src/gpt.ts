@@ -5,6 +5,7 @@ import consola from 'consola'
 import inquirer from 'inquirer'
 import { getOptions } from './options'
 import boxen from 'boxen'
+import fetch from 'node-fetch'	
 
 export const getChatGptResponse = async (diff: string) => {
 	const { conventionalCommits, emoji, lite } = getOptions()
